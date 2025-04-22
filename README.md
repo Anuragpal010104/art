@@ -1,24 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Art Platform Starter
 
-## Getting Started
+A GitHub-ready starter template for an art platform with a Next.js frontend, Python FastAPI backend, and AWS S3 integration for image uploads.
 
-First, run the development server:
+## Frontend (Next.js)
+- Next.js (App Router, TypeScript, TailwindCSS)
+- Pages: Home, Upload, Gallery, Try-on
+- Shared layout with navigation
+- Reusable components folder
 
+## Backend (FastAPI)
+- FastAPI app with CORS
+- `/api/sign_s3` (mock signed URL)
+- `/api/process_image` (accepts image URL)
+- `ml/` directory for future ML scripts
+
+## Setup & Running Instructions
+
+### Frontend
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Backend
+```bash
+cd backend
+python -m venv venv
+venv\Scripts\activate  # On Windows
+pip install -r requirements.txt
+uvicorn main:app --reload
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Notes on AWS S3
+- To enable real S3 uploads, configure AWS credentials and update the `/api/sign_s3` endpoint in `backend/main.py`.
+- See [boto3 docs](https://boto3.amazonaws.com/v1/documentation/api/latest/guide/credentials.html) for credential setup.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
+
+This project is minimal and ready to extend for your art platform needs.
 
 ## Learn More
 
