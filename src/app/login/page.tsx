@@ -1,14 +1,17 @@
 "use client";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Button from "@/components/Button";
 import Link from "next/link";
 
 export default function LoginPage() {
+  const router = useRouter();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("buyer");
   const [status, setStatus] = useState("");
   const [success, setSuccess] = useState(false);
+  const [error, setError] = useState("");
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -23,6 +26,8 @@ export default function LoginPage() {
       if (res.ok) {
         setStatus("Login successful!");
         setSuccess(true);
+        localStorage.setItem("loggedIn", "true");
+        router.push("/dashboard");
       } else {
         setStatus("Invalid credentials");
       }
