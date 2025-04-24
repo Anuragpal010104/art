@@ -1,14 +1,15 @@
+import { ArtworkGrid } from "@/components/artwork-grid"
+
 export default function GalleryPage() {
   return (
-    <div>
-      <h1 className="text-2xl font-bold mb-6">Art Gallery</h1>
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-        {[1,2,3,4,5,6,7,8].map((i) => (
-          <div key={i} className="aspect-square bg-gray-200 rounded flex items-center justify-center text-gray-400">
-            Artwork {i}
-          </div>
-        ))}
+    <div className="container px-4 py-12 md:py-24">
+      <div className="flex flex-col gap-8">
+        <div className="space-y-2">
+          <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl">Gallery Collection</h1>
+          <p className="text-xl text-muted-foreground">Browse our complete collection of contemporary artwork</p>
+        </div>
+        <ArtworkGrid />
       </div>
     </div>
-  );
+  )
 }

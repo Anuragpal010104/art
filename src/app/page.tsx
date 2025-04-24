@@ -1,38 +1,207 @@
-import Image from "next/image";
-import Link from "next/link";
+"use client"
+
+import Link from "next/link"
+import { ArrowRight, Calendar, Frame, Users } from "lucide-react"
+import { motion } from "framer-motion"
+import Image from "next/image"
+
+import { Button } from "@/components/ui/button"
+import { Card, CardContent } from "@/components/ui/card"
+import FeaturedArtwork from "@/components/featured-artwork"
+import { GalleryPreview } from "@/components/gallery-preview"
+import { NewsletterForm } from "@/components/newsletter-form"
+import { ExhibitionSlider } from "@/components/exhibition-slider"
+import { TestimonialCarousel } from "@/components/testimonial-carousel"
+
+const stats = [
+  {
+    name: "Artworks",
+    value: "500+",
+    description: "Unique pieces from emerging and established artists",
+    icon: Frame,
+  },
+  {
+    name: "Artists",
+    value: "100+",
+    description: "Talented creators from around the world",
+    icon: Users,
+  },
+  {
+    name: "Exhibitions",
+    value: "12",
+    description: "Annual curated shows featuring diverse styles",
+    icon: Calendar,
+  },
+]
 
 export default function Home() {
   return (
-    <section className="flex flex-col md:flex-row items-center justify-center gap-12 px-4 py-16 min-h-[60vh]">
-      {/* Hero Text */}
-      <div className="max-w-xl space-y-6 text-center md:text-left">
-        <h1 className="text-4xl md:text-6xl font-extrabold text-indigo-800 leading-tight drop-shadow-lg">
-          Showcase, Sell, and Try Art in 3D
-        </h1>
-        <p className="text-lg md:text-2xl text-gray-700">
-          A modern platform for artists, buyers, and sellers. Upload, explore, and visualize art on your own wall in 3D.
-        </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-          <Link href="/gallery" className="px-6 py-3 rounded-lg bg-indigo-700 text-white font-semibold text-lg shadow hover:bg-indigo-800 transition">
-            Explore Gallery
-          </Link>
-          <Link href="/upload" className="px-6 py-3 rounded-lg border border-indigo-700 text-indigo-700 font-semibold text-lg hover:bg-indigo-50 transition">
-            Upload Art
-          </Link>
-        </div>
-      </div>
-      {/* 3D Hero Visual */}
-      <div className="w-full max-w-md flex items-center justify-center">
-        <div className="relative w-72 h-72 md:w-96 md:h-96">
-          <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-indigo-400 via-blue-300 to-indigo-200 blur-2xl opacity-60 animate-pulse" />
-          <svg className="relative z-10 w-full h-full" viewBox="0 0 300 300" fill="none">
-            <ellipse cx="150" cy="150" rx="120" ry="60" fill="#6366f1" opacity="0.2" />
-            <rect x="60" y="80" width="180" height="120" rx="32" fill="#6366f1" className="animate-[bounce_2s_infinite]" />
-            <ellipse cx="150" cy="150" rx="60" ry="120" fill="#818cf8" opacity="0.3" />
-            <text x="50%" y="55%" textAnchor="middle" fill="#fff" fontSize="2rem" fontWeight="bold">3D Art</text>
-          </svg>
-        </div>
-      </div>
-    </section>
-  );
+    <div className="flex min-h-screen flex-col">
+      <main className="flex-1">
+        {/* Hero Section */}
+        <section className="relative min-h-[90vh] overflow-hidden">
+          <div className="absolute inset-0 z-0">
+            <div className="relative h-full w-full">
+              <Image
+                src="https://images.unsplash.com/photo-1577720643272-265f09367456?q=80&w=1920&auto=format&fit=crop"
+                alt="Gallery interior"
+                fill
+                priority
+                className="object-cover opacity-10 dark:opacity-5"
+              />
+              <div className="absolute inset-0 bg-gradient-to-b from-background/50 via-background to-background" />
+            </div>
+          </div>
+          <div className="container relative z-10 flex min-h-[90vh] flex-col items-center justify-center px-4 py-24 text-center md:py-32">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="max-w-4xl space-y-6"
+            >
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2, duration: 0.5 }}
+                className="space-y-2"
+              >
+                <h2 className="text-lg font-medium text-muted-foreground">Welcome to Artistry Gallery</h2>
+                <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl">
+                  Where Art Meets
+                  <span className="relative ml-2 inline-block bg-gradient-to-r from-blue-600 to-violet-600 bg-clip-text text-transparent">
+                    Innovation
+                  </span>
+                </h1>
+              </motion.div>
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4, duration: 0.5 }}
+                className="mx-auto max-w-2xl text-xl text-muted-foreground"
+              >
+                Discover a curated collection of contemporary masterpieces from emerging and established artists around
+                the globe.
+              </motion.p>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6, duration: 0.5 }}
+                className="flex flex-col justify-center gap-3 sm:flex-row"
+              >
+                <Button asChild size="lg" className="text-lg">
+                  <Link href="/gallery"><span>Explore Gallery<ArrowRight className="ml-2 h-5 w-5" /></span></Link>
+                </Button>
+                <Button variant="outline" size="lg" className="text-lg">
+                  <Link href="/exhibitions"><span>Current Exhibitions</span></Link>
+                </Button>
+              </motion.div>
+            </motion.div>
+          </div>
+          <div className="absolute bottom-0 left-0 right-0">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.8, duration: 0.5 }}
+              className="container px-4"
+            >
+              <div className="grid gap-8 rounded-t-3xl bg-muted/50 p-8 backdrop-blur-sm dark:bg-muted/10 md:grid-cols-3">
+                {stats.map((stat, index) => (
+                  <div key={stat.name} className="relative flex flex-col items-center gap-2 text-center">
+                    {index > 0 && <div className="absolute -left-4 top-0 hidden h-full w-px bg-border md:block" />}
+                    <stat.icon className="h-6 w-6 text-muted-foreground" />
+                    <div className="text-3xl font-bold">{stat.value}</div>
+                    <div className="font-medium">{stat.name}</div>
+                    <p className="text-sm text-muted-foreground">{stat.description}</p>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* Featured Artwork Section */}
+        <section className="py-24">
+          <div className="container px-4">
+            <div className="flex flex-col gap-8">
+              <div className="flex flex-col items-center gap-4 text-center">
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Featured Artwork</h2>
+                <p className="max-w-[800px] text-lg text-muted-foreground">
+                  Experience our most captivating pieces, each telling a unique story through the artist's vision and
+                  craftsmanship.
+                </p>
+              </div>
+              <FeaturedArtwork />
+            </div>
+          </div>
+        </section>
+
+        {/* Upcoming Exhibitions Section */}
+        <section className="relative overflow-hidden bg-muted/50 py-24 dark:bg-muted/10">
+          <div className="container px-4">
+            <div className="flex flex-col gap-8">
+              <div className="flex flex-col items-center gap-4 text-center">
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Upcoming Exhibitions</h2>
+                <p className="max-w-[800px] text-lg text-muted-foreground">
+                  Mark your calendar for these extraordinary showcases of artistic excellence.
+                </p>
+              </div>
+              <ExhibitionSlider />
+            </div>
+          </div>
+        </section>
+
+        {/* Gallery Preview Section */}
+        <section className="py-24">
+          <div className="container px-4">
+            <div className="flex flex-col gap-8">
+              <div className="flex flex-col items-center gap-4 text-center">
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Gallery Preview</h2>
+                <p className="max-w-[800px] text-lg text-muted-foreground">
+                  Explore a selection of our diverse collection, featuring works that challenge and inspire.
+                </p>
+              </div>
+              <GalleryPreview />
+              <div className="flex justify-center">
+                <Button asChild size="lg" variant="outline">
+                  <Link href="/gallery"><span>View Full Gallery</span></Link>
+                </Button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Testimonials Section */}
+        <section className="bg-muted/50 py-24 dark:bg-muted/10">
+          <div className="container px-4">
+            <div className="flex flex-col gap-8">
+              <div className="flex flex-col items-center gap-4 text-center">
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">What Collectors Say</h2>
+                <p className="max-w-[800px] text-lg text-muted-foreground">
+                  Hear from art enthusiasts who have experienced our gallery and collection.
+                </p>
+              </div>
+              <TestimonialCarousel />
+            </div>
+          </div>
+        </section>
+
+        {/* Newsletter Section */}
+        <section className="py-24">
+          <div className="container px-4">
+            <Card className="bg-muted/50 dark:bg-muted/10">
+              <CardContent className="flex flex-col items-center gap-6 p-12 text-center">
+                <h2 className="text-2xl font-bold sm:text-3xl">Stay Connected with Artistry</h2>
+                <p className="max-w-[600px] text-muted-foreground">
+                  Subscribe to our newsletter for exclusive previews, exhibition announcements, and artistic insights.
+                </p>
+                <div className="w-full max-w-md">
+                  <NewsletterForm />
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </section>
+      </main>
+    </div>
+  )
 }

@@ -47,3 +47,6 @@ next-env.d.ts
 /backend/*.pyo
 /backend/.env*
 /backend/.DS_Store
+/backend/art_platform.db
+
+/venv/
